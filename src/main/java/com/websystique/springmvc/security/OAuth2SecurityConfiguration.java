@@ -92,7 +92,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
        public DataSource dataSource() throws SQLException {
-        System.out.println("création de la datasource avec dbUrl = " + dbUrl);
+        System.out.println("===>création de la datasource avec dbUrl = " + dbUrl);
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
         } else {
