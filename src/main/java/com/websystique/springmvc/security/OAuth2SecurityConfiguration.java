@@ -1,6 +1,11 @@
 package com.websystique.springmvc.security;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import java.sql.SQLException;
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +24,13 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @Configuration
 @EnableWebSecurity
 public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    
+    
+     @Value("${spring.datasource.url}")
+  private String dbUrl;
+
+  @Autowired
+  private DataSource dataSource;
 
 	@Autowired
 	private ClientDetailsService clientDetailsService;
@@ -69,4 +81,17 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return store;
 	}
 	
+         @Bean
+  public DataSource dataSource() throws SQLException {
+      System.out.println("création de la datasource avec dbUrl = "+dbUrl);
+    if (dbUrl == null || dbUrl.isEmpty()) {
+      return new HikariDataSource();
+    } else {
+      HikariConfig config = new HikariConfig();
+      config.setJdbcUrl(dbUrl);
+      return new HikariDataSource(config);
+    }
+  }
+        
+        
 }
