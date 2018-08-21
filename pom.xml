@@ -65,7 +65,10 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>${jackson.library}</version>
         </dependency>
-
+<dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
