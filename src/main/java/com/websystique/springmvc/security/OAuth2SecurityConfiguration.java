@@ -50,7 +50,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
          auth.jdbcAuthentication()
                  .dataSource(dataSource)
-                 .usersByUsernameQuery("select username,password,enabled from user where username = ?")
+                 .usersByUsernameQuery("select username,password,enabled from users where username = ?")
                  .authoritiesByUsernameQuery("select username,role from user_roles where username=?");
         /*auth.inMemoryAuthentication()
                 .withUser("bill").password("abc123").roles("ADMIN").and()
