@@ -2,6 +2,7 @@ package com.websystique.springmvc.security;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import java.sql.Connection;
 import java.sql.SQLException;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,12 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
         
         System.out.println("======>authentification");
+        try (Connection connection = dataSource.getConnection()) {
+            System.out.println("===>instructions de la db");
+        }
+        catch(Exception e){
+            System.out.println("====> erreur"+e);
+        }
         auth.inMemoryAuthentication()
                 .withUser("bill").password("abc123").roles("ADMIN").and()
                 .withUser("bob").password("abc123").roles("USER");
