@@ -36,6 +36,8 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+        
+        System.out.println("====>authentification");
         auth.inMemoryAuthentication()
                 .withUser("bill").password("abc123").roles("ADMIN").and()
                 .withUser("bob").password("abc123").roles("USER");
@@ -80,8 +82,7 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    @Autowired
-    public DataSource dataSource() throws SQLException {
+       public DataSource dataSource() throws SQLException {
         System.out.println("création de la datasource avec dbUrl = " + dbUrl);
         if (dbUrl == null || dbUrl.isEmpty()) {
             return new HikariDataSource();
