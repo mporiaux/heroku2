@@ -40,7 +40,9 @@ public class OAuth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
         
         System.out.println("======>authentification");
         try (Connection connection = dataSource.getConnection()) {
+             if(dataSource ==null) System.out.println("===> dataSource est nul");
             System.out.println("===>instructions de la db");
+           
         }
         catch(Exception e){
             System.out.println("====> erreur"+e);
