@@ -1,4 +1,4 @@
-package com.websystique.springmvc.security;
+package com.example.security;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

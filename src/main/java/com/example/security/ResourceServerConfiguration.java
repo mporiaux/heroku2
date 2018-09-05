@@ -1,4 +1,4 @@
-package com.websystique.springmvc.security;
+package com.example.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,7 +22,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
 	public void configure(HttpSecurity http) throws Exception {
 		http.
 		anonymous().disable()
-		.requestMatchers().antMatchers("/user/**")
+		.requestMatchers().antMatchers("/Client/**")
 		.and().authorizeRequests()
 		.antMatchers("/user/**")
                 .access("hasRole('ROLE_ADMIN')")
